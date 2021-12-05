@@ -43,7 +43,6 @@ class SignController extends Controller
     {
         request()->validate([
             'user_id' => ['required', 'unique:signs'],
-            'signs' => ['required']
         ],[
             'user_id.required' => 'Harap Isi Kolom Dosen',
             'user_id.unique' => 'Dosen Sudah Mengisi Tanda Tangan'
