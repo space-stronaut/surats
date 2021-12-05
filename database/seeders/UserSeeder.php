@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'username' => 'andri123',
-                'nama' => 'Aldi Widodo',
+                'username' => 'katonwijana',
+                'nama' => 'Katon Wijana',
                 'nomor_induk' => 119022,
-                'np_hp' => '08954121111',
-                'email' => 'admin@gmail.com',
+                'np_hp' => '081315927777',
+                'email' => 'dosen@gmail.com',
                 'password' => bcrypt(123456),
                 'role' => 'dosen'
             ],
