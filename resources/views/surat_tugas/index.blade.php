@@ -59,52 +59,20 @@
                                     <div class="badge badge-info text-uppercase">{{ $item->status }}</div>
                                 </td>
                                <td class="d-flex">
-                                   <a href="{{ route('ppa.edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                                   <form action="{{ route('ppa.destroy', $item->id) }}" method="POST">
+                                   {{-- <img src="{{ asset('upload/'. $item->sign) }}" alt=""> --}}
+                                   @if ($item->status != 'disetujui' && Auth::user()->role == 'dosen' || Auth::user()->role == 'mahasiswa')
+                                   <a href="{{ route('surat_tugas.edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                                   <form action="{{ route('surat_tugas.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Ingin Menghapusnya??')">Hapus</button>
                                     </form>
-                                    <!-- Button trigger modal -->
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
-    Validasi
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Validasi</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="">
-              <div class="form-group">
-                  <label for="">Status</label>
-                  <select name="status" id="" class="form-control">
-                      <option value="proses" {{ $item->status == 'proses' ? 'selected' : '' }}>Proses</option>
-                      <option value="alamat kurang jelas" {{ $item->status == 'alamat kurang jelas' ? 'selected' : '' }}>Alamat Kurang Jelas</option>
-                      <option value="perihal kurang jelas" {{ $item->status == 'perihal kurang jelas' ? 'selected' : '' }}>Perihal Kurang Jelas</option>
-                      <option value="disetujui" {{ $item->status == 'disetujui' ? 'selected' : '' }}>Disetujui</option>
-                  </select>
-              </div>
-              <div class="form-group hilang">
-                  <label for="">Tanda Tangan</label>
-                  <div id="sig">
-                      {{-- <canvas></canvas> --}}
-                  </div>
-              </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+                                    @elseif(Auth::user()->role == 'ppa' && $item->status != 'disetujui')
+                                    <a href="{{ route('surat_tugas.show', $item->id) }}" class="btn btn-info">Validasi</a>
+                                   @endif
+                                   @if ($item->status == 'disetujui')
+                                    <a href="{{ route('surat_tugas.download', $item->id) }}" class="btn btn-warning btn-block">Unduh</a>
+                                   @endif
                                </td>
                            </tr>
                        @endforeach
@@ -115,5 +83,24 @@
 
        <script>
            var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
+
+           let stats = document.querySelectorAll('.stats')
+            let hilang = document.querySelectorAll('.hilang')
+
+        //    stats.addEventListener('change', function(e) {
+        //        if(e.target.value == 'disetujui'){
+        //             hilang.style.display == 'none
+        //             alert('disetujui')
+        //        }
+        //    })
+        stats.forEach(a => {
+            a.addEventListener('change', (e) => {
+            if(e.target.value == 'disetujui'){
+                hilang.style.display = 'block'
+            }else{
+                hilang.style.display = 'none'
+            }
+        })
+        })
        </script>
 @endsection

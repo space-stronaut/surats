@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class PpaController extends Controller
+class DashboardController extends Controller
 {
     public function __construct()
     {
@@ -18,9 +17,7 @@ class PpaController extends Controller
      */
     public function index()
     {
-        $ppas = User::where('role', 'ppa')->get();
-
-        return view('ppa.index', compact('ppas'));
+        return view('welcome');
     }
 
     /**
@@ -30,7 +27,7 @@ class PpaController extends Controller
      */
     public function create()
     {
-        return view('ppa.create');
+        //
     }
 
     /**
@@ -41,12 +38,7 @@ class PpaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $data['password'] = bcrypt($data['password']);
-        User::create($data);
-
-        return redirect()->route('ppa.index');
+        //
     }
 
     /**
@@ -68,9 +60,7 @@ class PpaController extends Controller
      */
     public function edit($id)
     {
-        $ppa = User::find($id);
-
-        return view('ppa.edit', compact('ppa'));
+        //
     }
 
     /**
@@ -82,17 +72,7 @@ class PpaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-        $pw = User::find($id)->password;
-        if ($data['password']) {
-            $data['password'] = bcrypt($data['password']);
-            User::find($id)->update($data);
-        }else{
-            $data['password'] = $pw;
-            User::find($id)->update($data);
-        }
-
-        return redirect()->route('ppa.index');
+        //
     }
 
     /**
@@ -103,8 +83,6 @@ class PpaController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-
-        return redirect()->back();
+        //
     }
 }

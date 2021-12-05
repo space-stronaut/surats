@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sign;
 use App\Models\Surat;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PDF;
 
 class SuratTugasController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +52,8 @@ class SuratTugasController extends Controller
             'lokasi_pelaksanaan' => $request->lokasi_pelaksanaan,
             'jenis_surat' => $request->jenis_surat,
             'nama_mitra' => $request->nama_mitra,
-            'keterangan' => $request->keterangan
+            'keterangan' => $request->keterangan,
+            'status' => 'proses'
         ]);
 
         $surat->users()->sync(request('users'));
@@ -63,7 +70,10 @@ class SuratTugasController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Surat::find($id);
+        $signs = Sign::all();
+
+        return view('surat_tugas.validasi', compact('item', 'signs'));
     }
 
     /**
@@ -74,7 +84,10 @@ class SuratTugasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Surat::find($id);
+        $users = User::all();
+
+        return view('surat_tugas.edit', compact('item', 'users'));
     }
 
     /**
@@ -86,7 +99,20 @@ class SuratTugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $surat = Surat::find($id)->update([
+            'pengirim_id' => $request->pengirim_id,
+            'tanggal_pelaksanaan' => $request->tanggal_pelaksanaan,
+            'lokasi_pelaksanaan' => $request->lokasi_pelaksanaan,
+            'jenis_surat' => $request->jenis_surat,
+            'nama_mitra' => $request->nama_mitra,
+            'keterangan' => $request->keterangan,
+            'status' => $request->status
+        ]);
+
+        $surat->users()->sync(request('users'));
+        // dd($request->user_id);
+
+        return redirect()->route('surat_tugas.index');
     }
 
     /**
@@ -97,6 +123,52 @@ class SuratTugasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Surat::find($id)->delete();
+
+        return redirect()->back();
+    }
+
+    public function validasi(Request $request, $id)
+    {
+        // $folderPath = public_path('upload/');
+        if ($request->status == 'disetujui') {
+            
+            $year = date('Y');
+            $len = strlen($id);
+
+            if ($len == 1) {
+                $kode = '00' . (string)$id;
+            }else if($len == 2){
+                $kode = '0' . (string)$id;
+            }else{
+                $kode = (string)$id;
+            }
+
+            Surat::find($id)->update([
+                'no_surat' => $kode.'/C/FTI/'. $year,
+                'status' => $request->status,
+                'sign_id' => $request->sign_id
+            ]);
+
+            // file_put_contents(public_path('upload/') . $name, $image_base64);
+
+            return redirect()->route('surat_tugas.index')->with('success', 'success Full upload signature');
+        }else{
+            Surat::find($id)->update([
+                'status' => $request->status,
+            ]);
+
+            return redirect()->route('surat_tugas.index')->with('success', 'success Full upload signature');
+        }
+        // dd(date('Y'));
+    
+    }
+
+    public function download($id)
+    {
+        $item = Surat::find($id);
+
+        $pdf = PDF::loadview('pdf.surat_tugas', compact('item'))->setPaper('a4');
+    	return $pdf->stream('laporan-pegawai-pdf');
     }
 }

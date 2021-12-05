@@ -20,9 +20,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/cs-skin-elastic.css') }}">
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
+
     <link rel="stylesheet" href="{{ asset('assets/scss/style.css') }}">
     <link href="{{ asset('assets/css/lib/vector-map/jqvmap.min.css') }}" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
 
@@ -40,20 +41,21 @@
 
     <link rel="stylesheet" type="text/css" href="http://keith-wood.name/css/jquery.signature.css">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </head>
 <body>
     <style>
 
-        .kbw-signature { width: 100%; height: 80px;}
+        /* .kbw-signature { width: 100%; height: 80px;} */
 
-        #sig canvas{
+        /* #sig canvas{
 
             width: 100% !important;
 
             height: auto;
 
-        }
+        } */
 
     </style>
 
@@ -77,6 +79,7 @@
                         <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">Pages</h3>
+                    @if (Auth::user()->role == 'ppa')
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Master</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -85,10 +88,12 @@
                             <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('ppa.index') }}">Ppa</a></li>
                         </ul>
                     </li>
+                    @endif
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Surat</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('surat_tugas.index') }}">Surat Tugas</a></li>
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('tanda.index') }}">Tanda Tangan</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -189,7 +194,7 @@
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="images/admin.jpg">
                         </a>
 
                         <div class="user-menu dropdown-menu">
@@ -198,8 +203,11 @@
                                 <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
 
                                 <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
-                                <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+        
+                                    <button class="nav-link btn btn-danger"><i class="fa fa-power -off"></i>Logout</button>
+                                </form>
                         </div>
                     </div>
 
@@ -253,20 +261,15 @@
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-
+    <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>
     <script src="{{ asset('assets/js/vendor/jquery-2.1.4.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 
-    <script src="{{ asset('assets/js/lib/chart-js/Chart.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-    <script src="{{ asset('assets/js/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/lib/vector-map/jquery.vmap.js') }}"></script>
-    <script src="{{ asset('assets/js/lib/vector-map/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/lib/vector-map/jquery.vmap.sampledata.js') }}"></script>
-    <script src="{{ asset('assets/js/lib/vector-map/country/jquery.vmap.world.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+    <script src="{{ asset('assets/js/widgets.js') }}"></script> --}}
     <script>
         ( function ( $ ) {
             "use strict";
@@ -284,9 +287,16 @@
                 normalizeFunction: 'polynomial'
             } );
 
-            var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
+            // $('.select2').select2();
+
+            // var sig = $('#sig').signature({syncField: '#signature64', syncFormat: 'PNG'});
         } )( jQuery );
+
+        // $(document).ready(function() {
+        //     $('#select2').select2();
+        // });
     </script>
+
 
 </body>
 </html>

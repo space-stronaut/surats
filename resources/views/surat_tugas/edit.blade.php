@@ -3,39 +3,44 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Ajukan Surat Tugas
+            Edit Surat Tugas
+            {{-- {{$item->users}} --}}
+            {{-- {{$item}} --}}
         </div>
         <div class="card-body">
-            <form action="{{ route('surat_tugas.store') }}" method="POST">
+            <form action="{{ route('surat_tugas.update', $item->id) }}" method="POST">
                 <input type="hidden" name="pengirim_id" value="{{ Auth::user()->id }}">
                 <input type="hidden" name="jenis_surat" value="tugas">
-
+                <input type="hidden" name="status" value="{{ $item->status }}">
+                @method('put')
                 @csrf
                 <div class="form-group">
                     <label for="">Penerima</label>
                     <select name="users[]" class="form-control select2" id="select2" multiple>
                         <option value="">Pilih Penerima...</option>
-                        @foreach ($users as $item)
-                            <option value="{{ $item->id }}">{{ $item->nomor_induk }} - {{ $item->nama }}</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}" @foreach ($item->users as $nama)
+                                {{ $nama->id == $user->id ? 'selected' : '' }}
+                            @endforeach>{{ $user->nomor_induk }} - {{ $user->nama }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="">Tanggal Pelaksanaan</label>
-                    <input type="date" name="tanggal_pelaksanaan" class="form-control">
+                    <input type="date" value="{{ $item->tanggal_pelaksanaan }}" name="tanggal_pelaksanaan" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Lokasi Pelaksanaan</label>
-                    <input type="text" name="lokasi_pelaksanaan" class="form-control">
+                    <input type="text" value="{{ $item->lokasi_pelaksanaan }}" name="lokasi_pelaksanaan" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Nama Mitra</label>
-                    <input type="text" name="nama_mitra" class="form-control">
+                    <input type="text" value="{{ $item->nama_mitra }}" name="nama_mitra" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Keterangan</label>
                     {{-- <input type="number" name="nomor_induk" class="form-control"> --}}
-                    <textarea name="keterangan" id="" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="keterangan" id="" cols="30" rows="10" class="form-control">{{ $item->keterangan }}</textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">

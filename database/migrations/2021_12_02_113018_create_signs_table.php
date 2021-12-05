@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuratUserTable extends Migration
+class CreateSignsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateSuratUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('surat_user', function (Blueprint $table) {
+        Schema::create('signs', function (Blueprint $table) {
             $table->id();
+            $table->text('signs')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('surat_id')->nullable();
-            $table->foreign('surat_id')->references('id')->on('surats')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateSuratUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('surat_user');
+        Schema::dropIfExists('signs');
     }
 }

@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PpaController;
+use App\Http\Controllers\SignController;
 use App\Http\Controllers\SuratTugasController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,13 +20,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/login', [AuthController::class, 'showLoginForm']);
-Route::post('/masuk', [AuthController::class, 'login'])->name('login');
+Route::get('/', [DashboardController::class, 'index']);
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/masuk', [AuthController::class, 'login'])->name('masuk');
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::resource('dosen', DosenController::class);
 Route::resource('mahasiswa', MahasiswaController::class);
+Route::resource('tanda', SignController::class);
 Route::resource('ppa', PpaController::class);
 Route::resource('surat_tugas', SuratTugasController::class);
+Route::put('validasi/{id}', [SuratTugasController::class, 'validasi'])->name('surat_tugas.validasi');
+Route::get('/download/surat_tugas/{id}', [SuratTugasController::class, 'download'])->name('surat_tugas.download');

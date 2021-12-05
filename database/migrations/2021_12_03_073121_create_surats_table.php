@@ -28,6 +28,8 @@ class CreateSuratsTable extends Migration
             $table->foreign('pengirim_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('ruang')->nullable();
             $table->string('nama_tamu')->nullable();
+            $table->unsignedBigInteger('sign_id')->nullable();
+            $table->foreign('sign_id')->references('id')->on('signs')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

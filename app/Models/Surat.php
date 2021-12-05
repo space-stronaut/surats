@@ -20,4 +20,9 @@ class Surat extends Model
     {
         return $this->belongsToMany(User::class, 'surats_users');
     }
+
+    public function sign()
+    {
+        return $this->belongsTo(Sign::class);
+    }
 }
