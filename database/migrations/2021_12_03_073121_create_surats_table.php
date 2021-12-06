@@ -17,7 +17,8 @@ class CreateSuratsTable extends Migration
             $table->id();
             $table->string('no_surat')->nullable();
             $table->enum('jenis_surat', ['izin kp', 'kegiatan', 'undangan', 'tugas', 'berita acara']);
-            $table->enum('status', ['proses', 'alamat kurang jelas', 'perihal kurang jelas', 'disetujui']);
+            $table->enum('status', ['proses', 'ditolak', 'disetujui']);
+            $table->text('alasan_ditolak')->nullable();
             $table->string('nama_mitra')->nullable();
             $table->string('lokasi_pelaksanaan')->nullable();
             $table->text('keterangan')->nullable();

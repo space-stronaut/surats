@@ -32,7 +32,7 @@
                                    <form action="{{ route('tanda.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger" {{ $item->user_id == Auth::user()->id ? '' : 'disabled' }}>Delete</button>
                                     </form>
                                </td>
                            </tr>

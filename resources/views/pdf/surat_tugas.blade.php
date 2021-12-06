@@ -127,7 +127,7 @@
 				<td class="text" align="center"><b> Dekan </b>
                     <img width="320" src="{{ public_path('upload/'. $item->sign->signs) }}" alt="">
         {{-- <img src="{{ asset('upload/'. $item->sign) }}" alt=""> --}}
-                    <br><br><br><br>Prof Yudi S.kom</td>
+                    <br><br><br><br>{{ $item->sign->user->nama }}</td>
 			</tr>
 	     </table>
 	</center>

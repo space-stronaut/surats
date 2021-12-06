@@ -99,7 +99,9 @@ class SuratTugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $surat = Surat::find($id)->update([
+        $surat = Surat::find($id);
+
+        $surat->update([
             'pengirim_id' => $request->pengirim_id,
             'tanggal_pelaksanaan' => $request->tanggal_pelaksanaan,
             'lokasi_pelaksanaan' => $request->lokasi_pelaksanaan,
@@ -132,8 +134,10 @@ class SuratTugasController extends Controller
     {
         // $folderPath = public_path('upload/');
         if ($request->status == 'disetujui') {
-            
+
             $year = date('Y');
+
+
             $len = strlen($id);
 
             if ($len == 1) {
@@ -147,13 +151,22 @@ class SuratTugasController extends Controller
             Surat::find($id)->update([
                 'no_surat' => $kode.'/C/FTI/'. $year,
                 'status' => $request->status,
-                'sign_id' => $request->sign_id
+                'sign_id' => $request->sign_id,
+                'alasan_ditolak' => NULL
             ]);
 
             // file_put_contents(public_path('upload/') . $name, $image_base64);
 
             return redirect()->route('surat_tugas.index')->with('success', 'success Full upload signature');
-        }else{
+        }else if($request->status == 'ditolak'){
+            Surat::find($id)->update([
+                'status' => $request->status,
+                'alasan_ditolak' => $request->alasan_ditolak
+            ]);
+
+            return redirect()->route('surat_tugas.index')->with('success', 'success Full upload signature');
+        }
+        else{
             Surat::find($id)->update([
                 'status' => $request->status,
             ]);
