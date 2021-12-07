@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sign;
 use App\Models\Surat;
 use Illuminate\Http\Request;
+use PDF;
 
 class BeritaAcaraController extends Controller
 {
@@ -136,8 +137,9 @@ class BeritaAcaraController extends Controller
 
     public function download($id)
     {
+        $id;
         $item = Surat::find($id);
-        $pdf = PDF::loadview('pdf.berita_acara',compact('item'));
+        $pdf = PDF::loadview('pdf.berita_acara', compact('item'));
     	return $pdf->stream();
     }
 }

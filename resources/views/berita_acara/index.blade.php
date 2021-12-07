@@ -28,7 +28,7 @@
                     @forelse ($surats as $item)
                         <tr>
                             <th>
-                                {{$item->kode_surat}}
+                                {{$item->no_surat}}
                             </th>
                             <td>
                                 {{$item->judul}}
@@ -49,17 +49,17 @@
                                 <span class="badge badge-info">{{$item->status}}</span>
                             </td>
                             <td>
-                                @if ($item->status != 'diterima' && Auth::user()->role == 'dosen')
+                                @if ($item->status != 'disetujui' && Auth::user()->role == 'dosen')
                                    <a href="{{ route('berita_acara.edit', $item->id) }}" class="btn btn-primary">Edit</a>
                                    <form action="{{ route('berita_acara.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Ingin Menghapusnya??')">Hapus</button>
                                     </form>
-                                    @elseif(Auth::user()->role == 'ppa' && $item->status != 'diterima')
+                                    @elseif(Auth::user()->role == 'ppa' && $item->status != 'disetujui')
                                     <a href="{{ route('berita_acara.validasi', $item->id) }}" class="btn btn-info">Validasi</a>
                                    @endif
-                                   @if ($item->status == 'diterima')
+                                   @if ($item->status == 'disetujui')
                                     <a href="{{ route('berita_acara.download', $item->id) }}" class="btn btn-warning btn-block">Unduh</a>
                                    @endif
                             </td>
