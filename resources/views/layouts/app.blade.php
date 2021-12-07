@@ -95,7 +95,9 @@
                             <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('surat_tugas.index') }}">Surat Tugas</a></li>
                             @if (Auth::user()->role == 'dosen')
                             <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('tanda.index') }}">Tanda Tangan</a></li>
-                                
+                            @endif
+                            @if(Auth::user()->role != 'mahasiswa')
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('berita_acara.index') }}">Berita Acara</a></li>
                             @endif
                         </ul>
                     </li>
@@ -197,20 +199,17 @@
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg">
+                            {{-- <img class="user-avatar rounded-circle" src="images/admin.jpg"> --}}
+                            Hi, {{ Auth::user()->nama }}
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-
-                                <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
-
-                                <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-                                <form action="{{ route('logout') }}" method="POST">
+                                {{-- <form action="{{ route('logout') }}" method="POST">
                                     @csrf
 
                                     <button class="nav-link btn btn-danger"><i class="fa fa-power -off"></i>Logout</button>
-                                </form>
+                                </form> --}}
+                                <a href="{{ route('logout') }}" class="nav-link">Logout</a>
                         </div>
                     </div>
 

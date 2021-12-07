@@ -16,15 +16,7 @@
             <form action="{{ route('tanda.store') }}" method="POST">
 
                 @csrf
-                <div class="form-group">
-                    <label for="">Dosen</label>
-                    <select name="user_id" class="form-control select2 @error('user_id') is-valid @enderror" id="select2">
-                        <option value="">Pilih Dosen...</option>
-                        @foreach ($users as $item)
-                            <option value="{{ $item->id }}">{{ $item->nomor_induk }} - {{ $item->nama }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <div class="form-group">
                     @error('user_id')
                     <div class="alert alert-danger" role="alert">

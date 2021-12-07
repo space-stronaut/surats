@@ -56,7 +56,13 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <div class="badge badge-info text-uppercase">{{ $item->status }}</div>
+                                    @if ($item->status == 'proses')
+                                        <div class="badge badge-primary text-uppercase">{{ $item->status }}</div>
+                                    @elseif($item->status == 'ditolak')
+                                        <div class="badge badge-danger text-uppercase">{{ $item->status }}</div>
+                                    @else
+                                        <div class="badge badge-success text-uppercase">{{ $item->status }}</div>
+                                    @endif
                                 </td>
                                <td class="d-flex">
                                    {{-- <img src="{{ asset('upload/'. $item->sign) }}" alt=""> --}}
