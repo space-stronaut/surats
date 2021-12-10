@@ -10,7 +10,14 @@
 </style>
     <div class="card">
         <div class="card-header">
-            Buat Tanda Tangan
+            <div class="pull-left">
+                <strong>Buat Tanda Tangan</strong>
+            </div>
+            <div class="pull-right">
+                    <a href="{{ route('tanda.index')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-undo"> </i> Back
+                    </a>
+            </div>
         </div>
         <div class="card-body">
             <form action="{{ route('tanda.store') }}" method="POST">

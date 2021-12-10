@@ -6,7 +6,9 @@
        <div class="card">
            <div class="card-header d-flex justify-content-between">
                <span>
-                   Sign
+                    <div class="pull-left">
+                        <strong>Signature</strong>
+                    </div>
                </span>
                <div>
                    <a href="{{ route('tanda.create') }}" class="btn btn-primary">Tambah Tanda Tangan</a>
@@ -32,7 +34,7 @@
                                    <form action="{{ route('tanda.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger" {{ $item->user_id == Auth::user()->id ? '' : 'disabled' }}>Delete</button>
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Ingin Menghapusnya??')" {{ $item->user_id == Auth::user()->id ? '' : 'disabled' }}>Hapus</button>
                                     </form>
                                </td>
                            </tr>

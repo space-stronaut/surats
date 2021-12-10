@@ -4,10 +4,12 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <span>
-                Berita Acara
+                <div class="pull-left">
+                    <strong>Berita Acara</strong>
+                </div>
             </span>
             <div>
-                <a href="{{ route('berita_acara.create') }}" class="btn btn-primary">+ Ajukan</a>
+                <a href="{{ route('berita_acara.create') }}" class="btn btn-primary">Tambah</a>
             </div>
         </div>
         <div class="card-body">
@@ -70,7 +72,7 @@
                             Belum Ada Data
                         </td>
                     </tr>
-                        
+
                     @endforelse
                 </tbody>
             </table>

@@ -3,7 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Edit Surat Tugas
+                <div class="pull-left">
+                    <strong>Edit Surat Tugas Kelompok</strong>
+                </div>
+                <div class="pull-right">
+                        <a href="{{ route('surat_tugas.index')}}" class="btn btn-secondary btn-sm">
+                            <i class="fa fa-undo"> </i> Back
+                        </a>
+                </div>
             {{-- {{$item->users}} --}}
             {{-- {{$item}} --}}
         </div>
@@ -44,7 +51,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">
-                        Submit
+                        Update
                     </button>
                 </div>
             </form>

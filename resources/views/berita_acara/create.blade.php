@@ -3,7 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Ajukan Berita Acara
+            <div class="pull-left">
+                <strong>Ajukan Berita Acara</strong>
+            </div>
+            <div class="pull-right">
+                    <a href="{{ route('berita_acara.index')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-undo"> </i> Back
+                    </a>
+            </div>
         </div>
         <div class="card-body">
             <form action="{{ route('berita_acara.store') }}" method="POST">

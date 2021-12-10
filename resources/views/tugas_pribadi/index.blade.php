@@ -6,10 +6,12 @@
        <div class="card">
            <div class="card-header d-flex justify-content-between">
                <span>
-                   Surat Tugas Pribadi
+                    <div class="pull-left">
+                        <strong>Surat Tugas Pribadi</strong>
+                    </div>
                </span>
                <div>
-                   <a href="{{ route('tugas_pribadi.create') }}" class="btn btn-primary">Tambah Surat Tugas</a>
+                   <a href="{{ route('tugas_pribadi.create') }}" class="btn btn-primary">Tambah</a>
                </div>
            </div>
            <div class="card-body">

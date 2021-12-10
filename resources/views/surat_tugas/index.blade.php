@@ -6,10 +6,12 @@
        <div class="card">
            <div class="card-header d-flex justify-content-between">
                <span>
-                   Surat Tugas Kelompok
+                    <div class="pull-left">
+                        <strong>Surat Tugas Kelompok</strong>
+                    </div>
                </span>
                <div>
-                   <a href="{{ route('surat_tugas.create') }}" class="btn btn-primary">Tambah Surat Tugas</a>
+                   <a href="{{ route('surat_tugas.create') }}" class="btn btn-primary">Tambah</a>
                </div>
            </div>
            <div class="card-body">

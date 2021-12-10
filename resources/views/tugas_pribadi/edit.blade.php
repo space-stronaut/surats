@@ -3,7 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Edit Surat Tugas Pribadi
+            <div class="pull-left">
+                <strong>Edit Surat Tugas Pribadi</strong>
+            </div>
+            <div class="pull-right">
+                    <a href="{{ route('tugas_pribadi.index')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-undo"> </i> Back
+                    </a>
+            </div>
             {{-- {{$item->users}} --}}
             {{-- {{$item}} --}}
         </div>
