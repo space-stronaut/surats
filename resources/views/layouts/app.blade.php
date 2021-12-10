@@ -99,6 +99,9 @@
                             @if(Auth::user()->role != 'mahasiswa')
                             <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('berita_acara.index') }}">Berita Acara</a></li>
                             @endif
+                            @if (Auth::user()->role == 'ppa')
+                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('surat_daftar_hadir.index') }}">Surat Daftar Hadir</a></li>
+                            @endif
                         </ul>
                     </li>
                 </ul>

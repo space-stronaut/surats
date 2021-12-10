@@ -8,6 +8,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PpaController;
 use App\Http\Controllers\SignController;
+use App\Http\Controllers\SuratDaftarHadirController;
 use App\Http\Controllers\SuratTugasController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,3 +37,7 @@ Route::get('/unduh/berita_acara/{id}', [BeritaAcaraController::class, 'download'
 Route::resource('surat_tugas', SuratTugasController::class);
 Route::put('validasi/{id}', [SuratTugasController::class, 'validasi'])->name('surat_tugas.validasi');
 Route::get('/download/surat_tugas/{id}', [SuratTugasController::class, 'download'])->name('surat_tugas.download');
+
+// surat daftar hadir
+Route::resource('surat_daftar_hadir', SuratDaftarHadirController::class);
+Route::get('/undih/surat_daftar_hadir/{id}', [SuratDaftarHadirController::class, 'unduh'])->name('surat_daftar_hadir.unduh');

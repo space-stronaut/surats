@@ -16,7 +16,7 @@ class CreateSuratsTable extends Migration
         Schema::create('surats', function (Blueprint $table) {
             $table->id();
             $table->string('no_surat')->nullable();
-            $table->enum('jenis_surat', ['izin kp', 'kegiatan', 'undangan', 'tugas', 'berita acara']);
+            $table->enum('jenis_surat', ['izin kp', 'kegiatan', 'undangan', 'tugas', 'pribadi' ,'berita acara']);
             $table->enum('status', ['proses', 'ditolak', 'disetujui']);
             $table->text('alasan_ditolak')->nullable();
             $table->string('nama_mitra')->nullable();
