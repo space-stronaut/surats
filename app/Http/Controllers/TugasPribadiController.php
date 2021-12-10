@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Sign;
 use App\Models\Surat;
-use App\Models\User;
 use Illuminate\Http\Request;
 use PDF;
 
-class SuratTugasController extends Controller
+class TugasPribadiController extends Controller
 {
-    public function __construct()
-    {
-        return $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +16,9 @@ class SuratTugasController extends Controller
      */
     public function index()
     {
-        $surats = Surat::where('jenis_surat', 'tugas')->get();
+        $surats = Surat::where('jenis_surat', 'pribadi')->get();
 
-        return view('surat_tugas.index', compact('surats'));
+        return view('tugas_pribadi.index', compact('surats'));
     }
 
     /**
@@ -33,9 +28,7 @@ class SuratTugasController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-
-        return view('surat_tugas.create', compact('users'));
+        return view('tugas_pribadi.create');
     }
 
     /**
@@ -56,10 +49,14 @@ class SuratTugasController extends Controller
             'status' => 'proses'
         ]);
 
-        $surat->users()->sync(request('users'));
-        // dd($request->user_id);
+        return redirect()->route('tugas_pribadi.index');
+    }
 
-        return redirect()->route('surat_tugas.index');
+    public function destroy($id)
+    {
+        Surat::find($id)->delete();
+
+        return redirect()->back();
     }
 
     /**
@@ -73,7 +70,7 @@ class SuratTugasController extends Controller
         $item = Surat::find($id);
         $signs = Sign::all();
 
-        return view('surat_tugas.validasi', compact('item', 'signs'));
+        return view('tugas_pribadi.validasi', compact('item', 'signs'));
     }
 
     /**
@@ -85,9 +82,8 @@ class SuratTugasController extends Controller
     public function edit($id)
     {
         $item = Surat::find($id);
-        $users = User::all();
 
-        return view('surat_tugas.edit', compact('item', 'users'));
+        return view('tugas_pribadi.edit', compact('item'));
     }
 
     /**
@@ -111,10 +107,7 @@ class SuratTugasController extends Controller
             'status' => $request->status
         ]);
 
-        $surat->users()->sync(request('users'));
-        // dd($request->user_id);
-
-        return redirect()->route('surat_tugas.index');
+        return redirect()->route('tugas_pribadi.index');
     }
 
     /**
@@ -123,13 +116,6 @@ class SuratTugasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        Surat::find($id)->delete();
-
-        return redirect()->back();
-    }
-
     public function validasi(Request $request, $id)
     {
         // $folderPath = public_path('upload/');
@@ -157,21 +143,21 @@ class SuratTugasController extends Controller
 
             // file_put_contents(public_path('upload/') . $name, $image_base64);
 
-            return redirect()->route('surat_tugas.index')->with('success', 'success Full upload signature');
+            return redirect()->route('tugas_pribadi.index')->with('success', 'success Full upload signature');
         }else if($request->status == 'ditolak'){
             Surat::find($id)->update([
                 'status' => $request->status,
                 'alasan_ditolak' => $request->alasan_ditolak
             ]);
 
-            return redirect()->route('surat_tugas.index')->with('success', 'success Full upload signature');
+            return redirect()->route('tugas_pribadi.index')->with('success', 'success Full upload signature');
         }
         else{
             Surat::find($id)->update([
                 'status' => $request->status,
             ]);
 
-            return redirect()->route('surat_tugas.index')->with('success', 'success Full upload signature');
+            return redirect()->route('tugas_pribadi.index')->with('success', 'success Full upload signature');
         }
         // dd(date('Y'));
     
@@ -181,7 +167,7 @@ class SuratTugasController extends Controller
     {
         $item = Surat::find($id);
 
-        $pdf = PDF::loadview('pdf.surat_tugas', compact('item'))->setPaper('a4');
+        $pdf = PDF::loadview('pdf.tugas_pribadi', compact('item'))->setPaper('a4');
     	return $pdf->stream('laporan-pegawai-pdf');
     }
 }

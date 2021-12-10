@@ -6,10 +6,10 @@
        <div class="card">
            <div class="card-header d-flex justify-content-between">
                <span>
-                   Surat Tugas Kelompok
+                   Surat Tugas Pribadi
                </span>
                <div>
-                   <a href="{{ route('surat_tugas.create') }}" class="btn btn-primary">Tambah Surat Tugas</a>
+                   <a href="{{ route('tugas_pribadi.create') }}" class="btn btn-primary">Tambah Surat Tugas</a>
                </div>
            </div>
            <div class="card-body">
@@ -23,7 +23,6 @@
                         <th scope="col">Lokasi Pelaksanaan</th>
                         <th scope="col">Nama Mitra</th>
                         <th scope="col">Keterangan</th>
-                        <th scope="col">Penerima</th>
                         <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
                        </tr>
@@ -51,11 +50,6 @@
                                     {{$item->keterangan}}
                                 </td>
                                 <td>
-                                    @foreach ($item->users as $user)
-                                        <li>{{ $user->nama }}</li>
-                                    @endforeach
-                                </td>
-                                <td>
                                     @if ($item->status == 'proses')
                                         <div class="badge badge-primary text-uppercase">{{ $item->status }}</div>
                                     @elseif($item->status == 'ditolak')
@@ -67,17 +61,17 @@
                                <td class="d-flex">
                                    {{-- <img src="{{ asset('upload/'. $item->sign) }}" alt=""> --}}
                                    @if ($item->status != 'disetujui' && Auth::user()->role == 'dosen' || Auth::user()->role == 'mahasiswa')
-                                   <a href="{{ route('surat_tugas.edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                                   <form action="{{ route('surat_tugas.destroy', $item->id) }}" method="POST">
+                                   <a href="{{ route('tugas_pribadi.edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                                   <form action="{{ route('tugas_pribadi.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin Ingin Menghapusnya??')">Hapus</button>
                                     </form>
                                     @elseif(Auth::user()->role == 'ppa' && $item->status != 'disetujui')
-                                    <a href="{{ route('surat_tugas.show', $item->id) }}" class="btn btn-info">Validasi</a>
+                                    <a href="{{ route('tugas_pribadi.show', $item->id) }}" class="btn btn-info">Validasi</a>
                                    @endif
                                    @if ($item->status == 'disetujui')
-                                    <a href="{{ route('surat_tugas.download', $item->id) }}" class="btn btn-warning btn-block">Unduh</a>
+                                    <a href="{{ route('tugas_pribadi.download', $item->id) }}" class="btn btn-warning btn-block">Unduh</a>
                                    @endif
                                </td>
                            </tr>

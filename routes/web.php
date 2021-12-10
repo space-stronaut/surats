@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaAcaraController;
 use App\Http\Controllers\DashboardController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\PpaController;
 use App\Http\Controllers\SignController;
 use App\Http\Controllers\SuratDaftarHadirController;
 use App\Http\Controllers\SuratTugasController;
+use App\Http\Controllers\TugasPribadiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +43,7 @@ Route::get('/download/surat_tugas/{id}', [SuratTugasController::class, 'download
 // surat daftar hadir
 Route::resource('surat_daftar_hadir', SuratDaftarHadirController::class);
 Route::get('/undih/surat_daftar_hadir/{id}', [SuratDaftarHadirController::class, 'unduh'])->name('surat_daftar_hadir.unduh');
+Route::resource('tugas_pribadi', TugasPribadiController::class);
+Route::put('validasi/{id}', [TugasPribadiController::class, 'validasi'])->name('tugas_pribadi.validasi');
+Route::get('/download/tugas_pribadi/{id}', [TugasPribadiController::class, 'download'])->name('tugas_pribadi.download');
+Route::resource('arsip', ArsipController::class);
