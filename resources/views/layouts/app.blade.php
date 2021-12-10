@@ -63,25 +63,21 @@
         <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
 
-            <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="./"><img src="{{ asset('image/killat.jpeg') }}" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="{{ asset('image/killat.jpeg') }}" alt="Logo"></a>
+    <div class="navbar-header">
+                <a class="navbar-brand" href=""><img src="{{ asset('image/killat.png') }}"style="width:100px; height:100px; " >KilatMail</a>
+
             </div>
+        <nav class="navbar navbar-expand-sm navbar-default">
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
                         <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
-                    <h3 class="menu-title">KilatMail</h3>
                     @if (Auth::user()->role == 'ppa')
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Master</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Master User</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('dosen.index') }}">Dosen</a></li>
                             <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('mahasiswa.index') }}">Mahasiswa</a></li>
@@ -90,21 +86,21 @@
                     </li>
                     @endif
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Surat</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Buat Surat</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('surat_tugas.index') }}">Surat Tugas Kelompok</a></li>
-                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('tugas_pribadi.index') }}">Surat Tugas Pribadi</a></li>
+                            <li><i class="fa fa-envelope-open"></i><a href="{{ route('surat_tugas.index') }}">Surat Tugas Kelompok</a></li>
+                            <li><i class="fa fa-envelope-open"></i><a href="{{ route('tugas_pribadi.index') }}">Surat Tugas Pribadi</a></li>
                             @if (Auth::user()->role == 'dosen')
-                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('tanda.index') }}">Tanda Tangan</a></li>
+                            <li><i class="fa fa-pencil-square-o"></i><a href="{{ route('tanda.index') }}">Tanda Tangan</a></li>
                             @endif
                             @if(Auth::user()->role != 'mahasiswa')
-                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('berita_acara.index') }}">Berita Acara</a></li>
+                            <li><i class="fa fa-envelope-open"></i><a href="{{ route('berita_acara.index') }}">Berita Acara</a></li>
                             @endif
                             @if (Auth::user()->role == 'ppa')
-                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('surat_daftar_hadir.index') }}">Surat Daftar Hadir</a></li>
+                            <li><i class="fa fa-envelope-open"></i><a href="{{ route('surat_daftar_hadir.index') }}">Surat Daftar Hadir</a></li>
                             @endif
                             @if (Auth::user()->role != 'dosen')
-                            <li><i class="fa fa-puzzle-piece"></i><a href="{{ route('arsip.index') }}">Arsip Surat</a></li>
+                            <li><i class="fa fa-envelope-open"></i><a href="{{ route('arsip.index') }}">Arsip Surat</a></li>
                             @endif
                         </ul>
                     </li>
