@@ -73,7 +73,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                        <a href="/"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     @if (Auth::user()->role == 'ppa')
                     <li class="menu-item-has-children dropdown">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sign;
 use App\Models\Surat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class TugasPribadiController extends Controller
@@ -16,9 +17,15 @@ class TugasPribadiController extends Controller
      */
     public function index()
     {
-        $surats = Surat::where('jenis_surat', 'pribadi')->get();
+        if (Auth::user()->role != 'ppa') {
+            $surats = Surat::where('jenis_surat', 'pribadi')->where('pengirim_id', Auth::user()->id)->get();
 
-        return view('tugas_pribadi.index', compact('surats'));
+            return view('tugas_pribadi.index', compact('surats'));
+        }else{
+            $surats = Surat::where('jenis_surat', 'pribadi')->get();
+
+            return view('tugas_pribadi.index', compact('surats'));
+        }
     }
 
     /**

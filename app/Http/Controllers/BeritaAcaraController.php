@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sign;
 use App\Models\Surat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class BeritaAcaraController extends Controller
@@ -16,9 +17,15 @@ class BeritaAcaraController extends Controller
      */
     public function index()
     {
-        $surats = Surat::where('jenis_surat', 'berita acara')->get();
+        if (Auth::user()->role != 'ppa') {
+            $surats = Surat::where('jenis_surat', 'berita acara')->where('pengirim_id', Auth::user()->id)->get();
 
-        return view('berita_acara.index', compact('surats'));
+            return view('berita_acara.index', compact('surats'));
+        }else{
+            $surats = Surat::where('jenis_surat', 'berita acara')->get();
+
+            return view('berita_acara.index', compact('surats'));
+        }
     }
 
     /**

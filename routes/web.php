@@ -37,13 +37,13 @@ Route::get('/validasi/berita_acara/{id}', [BeritaAcaraController::class, 'showVa
 Route::put('/validasi/berita_acara/{id}', [BeritaAcaraController::class, 'takenValidasi'])->name('berita_acara.validate');
 Route::get('/unduh/berita_acara/{id}', [BeritaAcaraController::class, 'download'])->name('berita_acara.download');
 Route::resource('surat_tugas', SuratTugasController::class);
-Route::put('validasi/{id}', [SuratTugasController::class, 'validasi'])->name('surat_tugas.validasi');
+Route::put('/validasi/surat_tugas/{id}', [SuratTugasController::class, 'validasi'])->name('surat_tugas.validate');
 Route::get('/download/surat_tugas/{id}', [SuratTugasController::class, 'download'])->name('surat_tugas.download');
 
 // surat daftar hadir
 Route::resource('surat_daftar_hadir', SuratDaftarHadirController::class);
 Route::get('/undih/surat_daftar_hadir/{id}', [SuratDaftarHadirController::class, 'unduh'])->name('surat_daftar_hadir.unduh');
 Route::resource('tugas_pribadi', TugasPribadiController::class);
-Route::put('validasi/{id}', [TugasPribadiController::class, 'validasi'])->name('tugas_pribadi.validasi');
+Route::put('/validasi/tugas_pribadi/{id}', [TugasPribadiController::class, 'validasi'])->name('tugas_pribadi.validasi');
 Route::get('/download/tugas_pribadi/{id}', [TugasPribadiController::class, 'download'])->name('tugas_pribadi.download');
 Route::resource('arsip', ArsipController::class);

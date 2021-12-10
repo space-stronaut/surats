@@ -17,10 +17,10 @@ class ArsipController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'mahasiswa') {
-            $pribadis = Surat::where('no_surat', '!=' , NULL)->where('jenis_surat', 'pribadi')->where('pemohon_id', Auth::user()->id)->paginate(5);
-            $kelompoks = Surat::where('no_surat', '!=' , NULL)->where('jenis_surat', 'tugas')->where('pemohon_id', Auth::user()->id)->paginate(5);
-            $acaras = Surat::where('no_surat', '!=' , NULL)->where('jenis_surat', 'berita acara')->where('pemohon_id', Auth::user()->id)->paginate(5);
-            $dosens = Surat::where('no_surat', '!=' , NULL)->where('jenis_surat', 'tugas dosen')->where('pemohon_id', Auth::user()->id)->paginate(5);
+            $pribadis = Surat::where('no_surat', '!=' , NULL)->where('jenis_surat', 'pribadi')->where('pengirim_id', Auth::user()->id)->paginate(5);
+            $kelompoks = Surat::where('no_surat', '!=' , NULL)->where('jenis_surat', 'tugas')->where('pengirim_id', Auth::user()->id)->paginate(5);
+            $acaras = Surat::where('no_surat', '!=' , NULL)->where('jenis_surat', 'berita acara')->where('pengirim_id', Auth::user()->id)->paginate(5);
+            $dosens = Surat::where('no_surat', '!=' , NULL)->where('jenis_surat', 'tugas dosen')->where('pengirim_id', Auth::user()->id)->paginate(5);
             $hadirs = SuratDaftarHadir::paginate(5);
 
             return view('arsip.index', compact('pribadis', 'kelompoks', 'acaras', 'dosens', 'hadirs'));

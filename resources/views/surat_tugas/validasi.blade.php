@@ -6,7 +6,7 @@
             Validasi
         </div>
         <div class="card-body">
-            <form action="{{ route('surat_tugas.validasi', $item->id) }}" method="POST">
+            <form action="/validasi/surat_tugas/{{ $item->id }}" method="POST">
                 @csrf
                 @method('put')
                   <div class="form-group">

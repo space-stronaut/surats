@@ -6,6 +6,7 @@ use App\Models\Sign;
 use App\Models\Surat;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class SuratTugasController extends Controller
@@ -21,9 +22,15 @@ class SuratTugasController extends Controller
      */
     public function index()
     {
-        $surats = Surat::where('jenis_surat', 'tugas')->get();
+        if (Auth::user()->role != 'ppa') {
+            $surats = Surat::where('jenis_surat', 'tugas')->where('pengirim_id', Auth::user()->id)->get();
 
-        return view('surat_tugas.index', compact('surats'));
+            return view('surat_tugas.index', compact('surats'));
+        }else{
+            $surats = Surat::where('jenis_surat', 'tugas')->get();
+
+            return view('surat_tugas.index', compact('surats'));
+        }
     }
 
     /**
