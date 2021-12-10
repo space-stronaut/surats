@@ -13,7 +13,7 @@
                         Surat Tugas Pribadi
                     </span>
                     <div>
-                        <a href="{{ route('tugas_pribadi.create') }}" class="btn btn-primary">Tambah Surat Tugas</a>
+                        {{-- <a href="{{ route('tugas_pribadi.create') }}" class="btn btn-primary">Tambah Surat Tugas</a> --}}
                     </div>
                 </div>
                 <div class="card-body">
@@ -98,7 +98,7 @@
                         Surat Tugas Kelompok
                     </span>
                     <div>
-                        <a href="{{ route('surat_tugas.create') }}" class="btn btn-primary">Tambah Surat Tugas</a>
+                        {{-- <a href="{{ route('surat_tugas.create') }}" class="btn btn-primary">Tambah Surat Tugas</a> --}}
                     </div>
                 </div>
                 <div class="card-body">
@@ -191,7 +191,7 @@
                         Berita Acara
                     </span>
                     <div>
-                        <a href="{{ route('berita_acara.create') }}" class="btn btn-primary">+ Ajukan</a>
+                        {{-- <a href="{{ route('berita_acara.create') }}" class="btn btn-primary">+ Ajukan</a> --}}
                     </div>
                 </div>
                 <div class="card-body">
@@ -269,8 +269,6 @@
             </div>
 
             @endif
-
-            @if(Auth::user()->role == 'ppa')
             <div class="card mt-3">
                 <div class="card-header d-flex justify-content-between">
                     <span>

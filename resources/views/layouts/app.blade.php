@@ -99,7 +99,7 @@
                             @if (Auth::user()->role == 'ppa')
                             <li><i class="fa fa-envelope-open"></i><a href="{{ route('surat_daftar_hadir.index') }}">Surat Daftar Hadir</a></li>
                             @endif
-                            @if (Auth::user()->role != 'dosen')
+                            @if (Auth::user()->role == 'dosen')
                             <li><i class="fa fa-envelope-open"></i><a href="{{ route('arsip.index') }}">Arsip Surat</a></li>
                             @endif
                         </ul>
