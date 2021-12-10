@@ -126,6 +126,13 @@ class BeritaAcaraController extends Controller
             // file_put_contents(public_path('upload/') . $name, $image_base64);
 
             return redirect()->route('berita_acara.index')->with('success', 'success Full upload signature');
+        }else if($request->status == 'ditolak'){
+            Surat::find($id)->update([
+                'status' => $request->status,
+                'alasan_ditolak' => $request->alasan_ditolak
+            ]);
+
+            return redirect()->route('surat_tugas.index')->with('success', 'success Full upload signature');
         }else{
             Surat::find($id)->update([
                 'status' => $request->status,

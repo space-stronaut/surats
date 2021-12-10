@@ -26,6 +26,10 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group dissapear" style="display: none">
+                    <label for="">Alasan Ditolak</label>
+                    <textarea name="alasan_ditolak" id="" cols="30" rows="10" class="form-control">{{ $item->alasan_ditolak }}</textarea>
+                </div>
                 <div class="form-group">
                     <button class="btn btn-success">Submit</button>
                 </div>
@@ -34,8 +38,21 @@
     </div>
 
     <script>
-        let stats = document.querySelector('.stats')
+   let stats = document.querySelector('.stats')
  let hilang = document.querySelector('.hilang')
+ let dissapear = document.querySelector('.dissapear')
+
+if(stats.value == 'ditolak'){
+    dissapear.style.display = 'block'
+    hilang.style.display = 'none'
+}else if(stats.value == 'disetujui'){
+    hilang.style.display = 'block'
+     dissapear.style.display = 'none'
+}else{
+    hilang.style.display = 'none'
+     dissapear.style.display = 'none'
+}
+
 //    stats.addEventListener('change', function(e) {
 //        if(e.target.value == 'disetujui'){
 //             hilang.style.display == 'none
@@ -45,8 +62,13 @@
  stats.addEventListener('change', (e) => {
  if(e.target.value == 'disetujui'){
      hilang.style.display = 'block'
+     dissapear.style.display = 'none'
+ }else if(e.target.value == 'ditolak'){
+    dissapear.style.display = 'block'
+    hilang.style.display = 'none'
  }else{
      hilang.style.display = 'none'
+     dissapear.style.display = 'none'
  }
 })
     </script>
