@@ -60,7 +60,7 @@
                                 </td>
                                <td class="d-flex">
                                    {{-- <img src="{{ asset('upload/'. $item->sign) }}" alt=""> --}}
-                                   @if ($item->status != 'disetujui' && Auth::user()->role == 'dosen' || Auth::user()->role == 'mahasiswa')
+                                   @if ($item->status != 'disetujui' && Auth::user()->role != 'ppa')
                                    <a href="{{ route('tugas_pribadi.edit', $item->id) }}" class="btn btn-primary">Edit</a>
                                    <form action="{{ route('tugas_pribadi.destroy', $item->id) }}" method="POST">
                                     @csrf
