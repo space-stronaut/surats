@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeritaAcaraController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\LogoutController;
@@ -47,3 +48,4 @@ Route::resource('tugas_pribadi', TugasPribadiController::class);
 Route::put('/validasi/tugas_pribadi/{id}', [TugasPribadiController::class, 'validasi'])->name('tugas_pribadi.validasi');
 Route::get('/download/tugas_pribadi/{id}', [TugasPribadiController::class, 'download'])->name('tugas_pribadi.download');
 Route::resource('arsip', ArsipController::class);
+Route::get('/getData', [ChartController::class, 'chart'])->name('chart');
