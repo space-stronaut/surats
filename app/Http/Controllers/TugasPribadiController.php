@@ -56,7 +56,7 @@ class TugasPribadiController extends Controller
             'status' => 'proses'
         ]);
 
-        return redirect()->route('tugas_pribadi.index');
+        return redirect()->route('tugas_pribadi.index')->with('success', 'Tugas Pribadi Berhasil Dibuat');
     }
 
     public function destroy($id)
