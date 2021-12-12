@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    
 <div class="row">
+  @if (Auth::user()->role != 'dosen')
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats">
         <div class="card-body ">
@@ -54,6 +56,8 @@
         </div>
       </div>
     </div>
+    @endif
+    @if (Auth::user()->role == 'ppa')
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats">
         <div class="card-body ">
@@ -80,6 +84,8 @@
         </div>
       </div>
     </div>
+    @endif
+    @if (Auth::user()->role != 'mahasiswa')
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats">
         <div class="card-body ">
@@ -107,6 +113,7 @@
       </div>
     </div>
   </div>
+  @endif
 
   <div class="card">
     <div class="card-header">
@@ -125,10 +132,36 @@
     const myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['Surat Pribadi', 'Berita Acara', 'Tugas Kelompok', 'Surat Daftar Hadir'],
+            labels: [
+              @if(Auth::user()->role != 'dosen')
+              'Surat Pribadi', 
+              @endif
+              @if(Auth::user()->role != 'mahasiswa')
+              'Berita Acara', 
+              @endif
+              @if(Auth::user()->role != 'dosen')
+              'Tugas Kelompok', 
+              @endif
+              @if(Auth::user()->role == 'ppa')
+              'Surat Daftar Hadir'
+              @endif
+              ],
             datasets: [{
                 label: '# of Votes',
-                data: [json.pribadis, json.acaras ,json.kelompoks, json.hadirs ],
+                data: [
+                  @if(Auth::user()->role != 'dosen')
+                  json.pribadis, 
+                  @endif
+                  @if(Auth::user()->role != 'mahasiswa')
+                  json.acaras ,
+                  @endif
+                  @if(Auth::user()->role != 'dosen')
+                  json.kelompoks, 
+                  @endif
+                  @if(Auth::user()->role == 'ppa')
+                  json.hadirs 
+                  @endif
+                  ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
