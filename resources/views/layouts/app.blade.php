@@ -100,9 +100,9 @@
                             @if (Auth::user()->role == 'ppa')
                             <li><i class="fa fa-envelope-open"></i><a href="{{ route('surat_daftar_hadir.index') }}">Surat Daftar Hadir</a></li>
                             @endif
-                            @if (Auth::user()->role == 'dosen')
+                            {{-- @if (Auth::user()->role == 'dosen') --}}
                             <li><i class="fa fa-envelope-open"></i><a href="{{ route('arsip.index') }}">Arsip Surat</a></li>
-                            @endif
+                            {{-- @endif --}}
                         </ul>
                     </li>
                 </ul>
@@ -213,7 +213,7 @@
 
                                     <button class="nav-link btn btn-danger"><i class="fa fa-power -off"></i>Logout</button>
                                 </form> --}}
-                                <a href="{{ route('logout') }}" class="nav-link">Logout</a>
+                                <a href="javascript:void(0)" data-target="#exampleModal" type="button" data-toggle="modal" class="nav-link">Logout</a>
                         </div>
                     </div>
 
@@ -265,6 +265,26 @@
             @yield('content')
         </div>
     </div><!-- /#right-panel -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Yakin ingin Logout?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+              <a href="{{ route('logout') }}" class="btn btn-danger">Ya,Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <!-- Right Panel -->
     <script type="text/javascript" src="http://keith-wood.name/js/jquery.signature.js"></script>

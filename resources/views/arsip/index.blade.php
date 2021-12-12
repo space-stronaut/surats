@@ -64,7 +64,7 @@
                                      </td>
                                     <td class="d-flex">
                                         {{-- <img src="{{ asset('upload/'. $item->sign) }}" alt=""> --}}
-                                        @if ($item->status != 'disetujui' && Auth::user()->role == 'dosen' || Auth::user()->role == 'mahasiswa')
+                                        {{-- @if ($item->status != 'disetujui' && Auth::user()->role == 'dosen' || Auth::user()->role == 'mahasiswa')
                                         <a href="{{ route('tugas_pribadi.edit', $item->id) }}" class="btn btn-primary">Edit</a>
                                         <form action="{{ route('tugas_pribadi.destroy', $item->id) }}" method="POST">
                                          @csrf
@@ -74,9 +74,9 @@
                                          @elseif(Auth::user()->role == 'ppa' && $item->status != 'disetujui')
                                          <a href="{{ route('tugas_pribadi.show', $item->id) }}" class="btn btn-info">Validasi</a>
                                         @endif
-                                        @if ($item->status == 'disetujui')
+                                        @if ($item->status == 'disetujui') --}}
                                          <a href="{{ route('tugas_pribadi.download', $item->id) }}" class="btn btn-warning btn-block">Unduh</a>
-                                        @endif
+                                        {{-- @endif --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -355,7 +355,7 @@
                     </ul>
                 </div>
             </div>
-            @endif
+            {{-- @endif --}}
         </div>
     </div>
 @endsection
