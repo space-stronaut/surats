@@ -52,7 +52,7 @@
                             </td>
                             <td>
                                 @if ($item->status != 'disetujui' && Auth::user()->role == 'dosen')
-                                   <a href="{{ route('berita_acara.edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                                   <a href="{{ route('berita_acara.edit', $item->id) }}" class="btn btn-success">Edit</a>
                                    <form action="{{ route('berita_acara.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('delete')

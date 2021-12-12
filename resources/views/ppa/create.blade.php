@@ -3,7 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Tambah Ppa
+            <div class="pull-left">
+                <strong>Tambah PPA</strong>
+            </div>
+            <div class="pull-right">
+                    <a href="{{ route('ppa.index')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-undo"> </i> Back
+                    </a>
+            </div>
         </div>
         <div class="card-body">
             <form action="{{ route('ppa.store') }}" method="POST">

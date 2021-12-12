@@ -69,7 +69,7 @@
                                <td class="d-flex">
                                    {{-- <img src="{{ asset('upload/'. $item->sign) }}" alt=""> --}}
                                    @if ($item->status != 'disetujui' && Auth::user()->role == 'dosen' || Auth::user()->role == 'mahasiswa')
-                                   <a href="{{ route('surat_tugas.edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                                   <a href="{{ route('surat_tugas.edit', $item->id) }}" class="btn btn-success">Edit</a>
                                    <form action="{{ route('surat_tugas.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('delete')

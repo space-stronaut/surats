@@ -3,7 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Edit Dosen
+            <div class="pull-left">
+                <strong>Edit Data Dosen</strong>
+            </div>
+            <div class="pull-right">
+                    <a href="{{ route('dosen.index')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-undo"> </i> Back
+                    </a>
+            </div>
         </div>
         <div class="card-body">
             <form action="{{ route('dosen.update', $dosen->id) }}" method="POST">
@@ -36,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">
-                        Submit
+                        Update
                     </button>
                 </div>
             </form>

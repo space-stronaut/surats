@@ -4,10 +4,12 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <span>
-                Berita Acara
+                <div class="pull-left">
+                    <strong>Surat Daftar Hadir</strong>
+                </div>
             </span>
             <div>
-                <a href="{{ route('surat_daftar_hadir.create') }}" class="btn btn-primary">+ Ajukan</a>
+                <a href="{{ route('surat_daftar_hadir.create') }}" class="btn btn-primary">Tambah</a>
             </div>
         </div>
         <div class="card-body">
@@ -51,7 +53,7 @@
                                     @method('delete')
                                     <button class="btn btn-danger ml-2">Hapus</button>
                                 </form>
-                                <a href="{{ route('surat_daftar_hadir.unduh', $item->id) }}" class="btn btn-info ml-2">Unduh</a>
+                                <a href="{{ route('surat_daftar_hadir.unduh', $item->id) }}" class="btn btn-warning btn-block">Unduh</a>
                             </td>
                         </tr>
                     @empty
@@ -60,7 +62,7 @@
                             Belum Ada Data
                         </td>
                     </tr>
-                        
+
                     @endforelse
                 </tbody>
             </table>

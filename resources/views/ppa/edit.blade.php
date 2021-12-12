@@ -3,7 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Edit Ppa
+            <div class="pull-left">
+                <strong>Edit Data PPA</strong>
+            </div>
+            <div class="pull-right">
+                    <a href="{{ route('ppa.index')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-undo"> </i> Back
+                    </a>
+            </div>
         </div>
         <div class="card-body">
             <form action="{{ route('ppa.update', $ppa->id) }}" method="POST">
@@ -36,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">
-                        Submit
+                        Update
                     </button>
                 </div>
             </form>

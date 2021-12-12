@@ -2,13 +2,15 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <span>
-                Surat Daftar Hadir
-            </span>
-            <span>
-                <a href="{{ route('surat_daftar_hadir.index') }}" class="btn btn-primary">Kembali</a>
-            </span>
+        <div class="card-header">
+            <div class="pull-left">
+                <strong>Tambah Surat Daftar Hadir</strong>
+            </div>
+            <div class="pull-right">
+                    <a href="{{ route('surat_daftar_hadir.index')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-undo"> </i> Back
+                    </a>
+            </div>
         </div>
         <div class="card-body">
             <form action="{{ route('surat_daftar_hadir.store') }}" method="post">

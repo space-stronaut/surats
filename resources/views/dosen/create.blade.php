@@ -3,7 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Tambah Dosen
+            <div class="pull-left">
+                <strong>Tambah Dosen</strong>
+            </div>
+            <div class="pull-right">
+                    <a href="{{ route('dosen.index')}}" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-undo"> </i> Back
+                    </a>
+            </div>
         </div>
         <div class="card-body">
             <form action="{{ route('dosen.store') }}" method="POST">
