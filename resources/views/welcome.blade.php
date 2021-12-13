@@ -9,14 +9,14 @@
         <div class="card-body ">
           <div class="row">
             <div class="col-5 col-md-4">
-              <div class="icon-big text-center icon-warning">
-                <i class="nc-icon nc-email-85 text-warning"></i>
+              <div class="icon-big text-center icon-warning" style="font-size: 4rem;">
+                <i class="fa fa-envelope fa-10x text-primary"></i>
               </div>
             </div>
             <div class="col-7 col-md-8">
               <div class="numbers">
                 <p class="card-category">Tugas Pribadi</p>
-                <p class="card-title">{{ count(App\Models\Surat::where('jenis_surat', 'pribadi')->get()) }}<p>
+                <p class="card-title">{{ $pribadis }}<p>
               </div>
             </div>
           </div>
@@ -35,14 +35,14 @@
         <div class="card-body ">
           <div class="row">
             <div class="col-5 col-md-4">
-              <div class="icon-big text-center icon-warning">
-                <i class="nc-icon nc-email-85 text-success"></i>
+              <div class="icon-big text-center icon-warning" style="font-size: 4rem;">
+                <i class="fa fa-envelope fa-10x text-warning"></i>
               </div>
             </div>
             <div class="col-7 col-md-8">
               <div class="numbers">
                 <p class="card-category">Tugas Kelompok</p>
-                <p class="card-title">{{ count(App\Models\Surat::where('jenis_surat', 'tugas')->get()) }}<p>
+                <p class="card-title">{{ $kelompoks }}<p>
               </div>
             </div>
           </div>
@@ -63,14 +63,14 @@
         <div class="card-body ">
           <div class="row">
             <div class="col-5 col-md-4">
-              <div class="icon-big text-center icon-warning">
-                <i class="nc-icon nc-email-85 text-danger"></i>
+              <div class="icon-big text-center icon-warning" style="font-size: 4rem;">
+                <i class="fa fa-envelope fa-10x text-danger"></i>
               </div>
             </div>
             <div class="col-7 col-md-8">
               <div class="numbers">
                 <p class="card-category">Surat Daftar Hadir</p>
-                <p class="card-title">{{ count(App\Models\SuratDaftarHadir::all()) }}<p>
+                <p class="card-title">{{ $hadirs }}<p>
               </div>
             </div>
           </div>
@@ -91,14 +91,14 @@
         <div class="card-body ">
           <div class="row">
             <div class="col-5 col-md-4">
-              <div class="icon-big text-center icon-warning">
-                <i class="nc-icon nc-email-85 text-primary"></i>
+              <div class="icon-big text-center icon-warning" style="font-size: 4rem;">
+                <i class="fa fa-envelope fa-10x text-info"></i>
               </div>
             </div>
             <div class="col-7 col-md-8">
               <div class="numbers">
                 <p class="card-category">Berita Acara</p>
-                <p class="card-title">{{ count(App\Models\Surat::where('jenis_surat', 'berita acara')->get()) }}<p>
+                <p class="card-title">{{ $acaras }}<p>
               </div>
             </div>
           </div>
