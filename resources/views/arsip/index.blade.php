@@ -6,7 +6,6 @@
             Arsip Surat
         </div>
         <div class="card-body">
-            @if (Auth::user()->role != 'dosen')
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <span>
@@ -91,7 +90,7 @@
                     </ul>
                 </div>
             </div>
-
+            @if (Auth::user()->role != 'dosen')
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <span>

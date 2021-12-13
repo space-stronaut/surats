@@ -29,9 +29,10 @@ class DashboardController extends Controller
         return view('welcome', compact('pribadis', 'kelompoks', 'acaras', 'hadirs'));
         }else if(Auth::user()->role == 'dosen')
         {
+            $pribadis = count(Surat::where('jenis_surat', 'pribadi')->where('pengirim_id', Auth::user()->id)->get());
         $acaras = count(Surat::where('jenis_surat', 'berita acara')->where('pengirim_id', Auth::user()->id)->get());
 
-        return view('welcome', compact('acaras'));
+        return view('welcome', compact('acaras', 'pribadis'));
         }else{
             $pribadis = count(Surat::where('jenis_surat', 'pribadi')->where('pengirim_id', Auth::user()->id)->get());
         $kelompoks = count(Surat::where('jenis_surat', 'tugas')->where('pengirim_id', Auth::user()->id)->get());

@@ -89,8 +89,12 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Buat Surat</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-envelope-open"></i><a href="{{ route('surat_tugas.index') }}">Surat Tugas Kelompok</a></li>
                             <li><i class="fa fa-envelope-open"></i><a href="{{ route('tugas_pribadi.index') }}">Surat Tugas Pribadi</a></li>
+
+                            @if (Auth::user()->role != 'dosen')
+                            <li><i class="fa fa-envelope-open"></i><a href="{{ route('surat_tugas.index') }}">Surat Tugas Kelompok</a></li>
+
+                            @endif
                             @if (Auth::user()->role == 'dosen')
                             <li><i class="fa fa-pencil-square-o"></i><a href="{{ route('tanda.index') }}">Tanda Tangan</a></li>
                             @endif

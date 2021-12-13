@@ -25,10 +25,12 @@ class ChartController extends Controller
         ]);
         }else if(Auth::user()->role == 'dosen')
         {
+            $pribadis = count(Surat::where('jenis_surat', 'pribadi')->where('pengirim_id', Auth::user()->id)->get());
         $acaras = count(Surat::where('jenis_surat', 'berita acara')->where('pengirim_id', Auth::user()->id)->get());
 
         return response()->json([
             'acaras' => $acaras,
+            'pribadis' => $pribadis,
         ]);
         }else{
             $pribadis = count(Surat::where('jenis_surat', 'pribadi')->where('pengirim_id', Auth::user()->id)->get());

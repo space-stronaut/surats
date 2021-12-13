@@ -3,7 +3,6 @@
 @section('content')
     
 <div class="row">
-  @if (Auth::user()->role != 'dosen')
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats">
         <div class="card-body ">
@@ -30,6 +29,7 @@
         </div>
       </div>
     </div>
+    @if (Auth::user()->role != 'dosen')
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats">
         <div class="card-body ">
@@ -133,9 +133,7 @@
         type: 'pie',
         data: {
             labels: [
-              @if(Auth::user()->role != 'dosen')
               'Surat Pribadi', 
-              @endif
               @if(Auth::user()->role != 'mahasiswa')
               'Berita Acara', 
               @endif
@@ -149,9 +147,7 @@
             datasets: [{
                 label: '# of Votes',
                 data: [
-                  @if(Auth::user()->role != 'dosen')
                   json.pribadis, 
-                  @endif
                   @if(Auth::user()->role != 'mahasiswa')
                   json.acaras ,
                   @endif
