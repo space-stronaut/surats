@@ -46,6 +46,11 @@ class TugasPribadiController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'tanggal_pelaksanaan' => ['required'],
+            'lokasi_pelaksanaan' => ['required'],
+            'nama_mitra' => ['required'],
+        ]);
         $surat = Surat::create([
             'pengirim_id' => $request->pengirim_id,
             'tanggal_pelaksanaan' => $request->tanggal_pelaksanaan,
@@ -102,6 +107,11 @@ class TugasPribadiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        request()->validate([
+            'tanggal_pelaksanaan' => ['required'],
+            'lokasi_pelaksanaan' => ['required'],
+            'nama_mitra' => ['required'],
+        ]);
         $surat = Surat::find($id);
 
         $surat->update([

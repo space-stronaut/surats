@@ -46,6 +46,13 @@ class BeritaAcaraController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'judul' => ['required'],
+            'tema' => ['required'],
+            'tanggal_pelaksanaan' => ['required'],
+            'ruang' => ['required'],
+            'nama_tamu' => ['required']
+        ]);
         Surat::create($request->all());
 
         return redirect()->route('berita_acara.index');
@@ -84,6 +91,13 @@ class BeritaAcaraController extends Controller
      */
     public function update(Request $request, $id)
     {
+        request()->validate([
+            'judul' => ['required'],
+            'tema' => ['required'],
+            'tanggal_pelaksanaan' => ['required'],
+            'ruang' => ['required'],
+            'nama_tamu' => ['required']
+        ]);
         Surat::find($id)->update($request->all());
 
         return redirect()->route('berita_acara.index');

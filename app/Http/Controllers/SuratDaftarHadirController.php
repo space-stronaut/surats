@@ -40,6 +40,16 @@ class SuratDaftarHadirController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'nama_kegiatan' => ['required'],
+            'tanggal' => ['required'],
+            'pembicara' => ['required'],
+            'tempat' => ['required'],
+            'start' => ['required'],
+            'end' => ['required'],
+            'sign_id' => ['required'],
+            'jumlah_peserta' => ['required']
+        ]);
         if(SuratDaftarHadir::first() == NULL){
             $y = date('Y');
             SuratDaftarHadir::create([
@@ -122,6 +132,16 @@ class SuratDaftarHadirController extends Controller
      */
     public function update(Request $request, $id)
     {
+        request()->validate([
+            'nama_kegiatan' => ['required'],
+            'tanggal' => ['required'],
+            'pembicara' => ['required'],
+            'tempat' => ['required'],
+            'start' => ['required'],
+            'end' => ['required'],
+            'sign_id' => ['required'],
+            'jumlah_peserta' => ['required']
+        ]);
         SuratDaftarHadir::find($id)->update([
             'nama_kegiatan' => $request->nama_kegiatan,
             'tanggal' => $request->tanggal,

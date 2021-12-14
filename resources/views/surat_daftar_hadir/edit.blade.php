@@ -18,24 +18,59 @@
                 @method('put')
                 <div class="form-group">
                     <label for="">Nama Kegiatan</label>
-                    <input type="text" name="nama_kegiatan" value="{{ $surat->nama_kegiatan }}" class="form-control">
+                    <input type="text" name="nama_kegiatan" value="{{ $surat->nama_kegiatan }}" class="form-control @error('nama_kegiatan') is-invalid @enderror">
                 </div>
+                @error('nama_kegiatan')
+                    <div class="form-group">
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                    </div>
+                @enderror
                 <div class="form-group">
                     <label for="">Tanggal</label>
-                    <input type="date" name="tanggal" value="{{ $surat->tanggal }}" class="form-control">
+                    <input type="date" name="tanggal" value="{{ $surat->tanggal }}" class="form-control @error('tanggal') is-invalid @enderror">
                 </div>
+                @error('tanggal')
+                    <div class="form-group">
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                    </div>
+                @enderror
                 <div class="form-group">
                     <label for="">Tempat</label>
-                    <input type="text" name="tempat" value="{{ $surat->tempat }}" class="form-control">
+                    <input type="text" name="tempat" value="{{ $surat->tempat }}" class="form-control @error('tempat') is-invalid @enderror">
                 </div>
+                @error('tempat')
+                    <div class="form-group">
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                    </div>
+                @enderror
                 <div class="form-group">
                     <label for="">Nama Pembicara</label>
-                    <input type="text" name="pembicara" class="form-control" value="{{ $surat->pembicara }}">
+                    <input type="text" name="pembicara" class="form-control @error('pembicara') is-invalid @enderror" value="{{ $surat->pembicara }}">
                 </div>
+                @error('pembicara')
+                    <div class="form-group">
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                    </div>
+                @enderror
                 <div class="form-group">
                     <label for="">Jumlah Peserta</label>
-                    <input type="number" name="jumlah_peserta" value="{{ $surat->jumlah_peserta }}" class="form-control">
+                    <input type="number" name="jumlah_peserta" value="{{ $surat->jumlah_peserta }}" class="form-control @error('jumlah_peserta') is-invalid @enderror">
                 </div>
+                @error('jumlah_peserta')
+                    <div class="form-group">
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                    </div>
+                @enderror
                 <div class="form-group">
                     <label for="">Tanda Tangan Dosen</label>
                     <select name="sign_id" id="" class="form-control select2">
@@ -45,16 +80,37 @@
                         @endforeach
                     </select>
                 </div>
+                @error('sign_id')
+                    <div class="form-group">
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                    </div>
+                @enderror
                 <div class="form-group row">
                     <div class="col">
                         <label for="">Dari Jam</label>
-                      <input type="time" class="form-control" value="{{ $surat->start }}" name="start">
+                      <input type="time" class="form-control @error('start') is-invalid @enderror" value="{{ $surat->start }}" name="start">
                     </div>
                     <div class="col">
                         <label for="">Sampai Jam</label>
-                      <input type="time" class="form-control" name="end" value="{{ $surat->end }}">
+                      <input type="time" class="form-control @error('end') is-invalid @enderror" name="end" value="{{ $surat->end }}">
                     </div>
                 </div>
+                @error('start')
+                    <div class="form-group">
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                    </div>
+                @enderror
+                @error('end')
+                    <div class="form-group">
+                        <div class="alert alert-danger">
+                            {{$message}}
+                        </div>
+                    </div>
+                @enderror
                 <div class="form-group">
                     <button class="btn btn-success">Update</button>
                 </div>

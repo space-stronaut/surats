@@ -20,16 +20,31 @@
                 @csrf
                 <div class="form-group">
                     <label for="">Tanggal Pelaksanaan</label>
-                    <input type="date" name="tanggal_pelaksanaan" class="form-control">
+                    <input type="date" name="tanggal_pelaksanaan" class="form-control @error('tanggal_pelaksanaan') is-invalid @enderror">
                 </div>
+                @error('tanggal_pelaksanaan')
+                    <div class="alert alert-danger">
+                        {{$message}}
+                    </div>
+                @enderror
                 <div class="form-group">
                     <label for="">Lokasi Pelaksanaan</label>
-                    <input type="text" name="lokasi_pelaksanaan" class="form-control">
+                    <input type="text" name="lokasi_pelaksanaan" class="form-control @error('lokasi_pelaksanaan') is-invalid @enderror">
                 </div>
+                @error('lokasi_pelaksanaan')
+                    <div class="alert alert-danger">
+                        {{$message}}
+                    </div>
+                @enderror
                 <div class="form-group">
                     <label for="">Nama Mitra</label>
-                    <input type="text" name="nama_mitra" class="form-control">
+                    <input type="text" name="nama_mitra" class="form-control @error('nama_mitra') is-invalid @enderror">
                 </div>
+                @error('nama_mitra')
+                    <div class="alert alert-danger">
+                        {{$message}}
+                    </div>
+                @enderror
                 <div class="form-group">
                     <label for="">Keterangan</label>
                     {{-- <input type="number" name="nomor_induk" class="form-control"> --}}
